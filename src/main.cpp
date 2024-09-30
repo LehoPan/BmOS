@@ -4,6 +4,8 @@ int main(){
     BmOS hiii;
 
     hiii.render();
-
-    hiii.play();
+    while(true){
+        hiii.play();
+    }
+    
 }

@@ -53,7 +53,7 @@ void BmOS::play(bool loop) {
             clearing_array.push_back(temp_pixel);
         }
         render();
-        usleep(60000);
+        usleep(600000);
 
         while(!clearing_array.empty()) {
             changeFrame(clearing_array[0][0], clearing_array[0][1], bg_color);
