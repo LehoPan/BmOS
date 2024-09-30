@@ -18,7 +18,6 @@ class BmOS {
         int frame[20][80]; // for speed at compile time you need to put y, x here
 
         int bg_color = 6;
-        int frame_count = 0;
         string set = "loading";
 
     public:

@@ -11,7 +11,7 @@ BmOS::BmOS() {
 
 // iterating frames
 void BmOS::changeFrame(int x, int y, int color) {
-    frame[y][x] = color;
+    frame[x][y] = color;
 }
 
 void BmOS::render() {
@@ -34,6 +34,7 @@ void BmOS::play(bool loop) {
     string raw_pixel;
     string raw_value;
     vector<int> temp_pixel;
+
     vector<vector<int>> clearing_array;
 
     //one frame
@@ -44,7 +45,6 @@ void BmOS::play(bool loop) {
         while(getline(pixels, raw_pixel, '|')) {
             stringstream values(raw_pixel);
             temp_pixel.clear();
-
             //one value of that pixel coordinate and color
             while(getline(values, raw_value, ',')) {
                 temp_pixel.push_back(stoi(raw_value));
@@ -53,12 +53,12 @@ void BmOS::play(bool loop) {
             clearing_array.push_back(temp_pixel);
         }
         render();
-        usleep(600000);
-
+        
         while(!clearing_array.empty()) {
             changeFrame(clearing_array[0][0], clearing_array[0][1], bg_color);
             clearing_array.erase(clearing_array.begin());
         }
+        usleep(600000);
     }
     file.close();
 }

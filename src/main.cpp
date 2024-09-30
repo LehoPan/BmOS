@@ -6,6 +6,7 @@ int main(){
     hiii.render();
     while(true){
         hiii.play();
+        usleep(700000);
     }
     
 }
