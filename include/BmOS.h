@@ -13,10 +13,21 @@ using namespace std;
 class BmOS {
     // frame is stored here
     private:
-        int width = 80;
-        int height = 20;
-        int frame[20][80]; // for speed at compile time you need to put y, x here
+        int width = 100;
+        int height = 30;
+        int frame[30][100]; // for speed at compile time you need to put y, x here
+	
+	int consoleFrame = 0;
+	
+	//ofstream console1("/dev/tty1");
+	//ofstream console2("/dev/tty2");
 
+	//filebuf *console1 = new filebuf();
+	//console1->open("/dev/tty1");
+	
+	//filebuf *console2 = new filebuf();
+	//console2->open("/dev/tty2");
+		
         int bg_color = 6;
         string set = "loading";
 

@@ -15,12 +15,28 @@ void BmOS::changeFrame(int x, int y, int color) {
 }
 
 void BmOS::render() {
+    ofstream console1("/dev/tty1");
+    ofstream console2("/dev/tty2");
+
+    //string line = "\033c";
+    string line = "\n";
     for(int i = 0; i < height; i++) {
         for(int j = 0; j < width; j++) {
-            cout << "\e[48;5;" << frame[i][j] << "m \e[0m";
+            line += "\e[48;5;" + to_string(frame[i][j]) + "m \e[0m";
         }
-        cout << endl;
+        //line += "\n";
     }
+    consoleFrame = (++consoleFrame) % 2;
+    if(consoleFrame) {
+    	cout.rdbuf(console2.rdbuf());
+	system("chvt 1");
+    } else {
+	cout.rdbuf(console1.rdbuf());
+	system("chvt 2");
+    }
+    cout << line << flush;
+    console1.close();
+    console2.close();
 }
 
 void BmOS::play(bool loop) {
@@ -53,12 +69,13 @@ void BmOS::play(bool loop) {
             clearing_array.push_back(temp_pixel);
         }
         render();
-        
+       	usleep(50000); 
+
         while(!clearing_array.empty()) {
             changeFrame(clearing_array[0][0], clearing_array[0][1], bg_color);
             clearing_array.erase(clearing_array.begin());
         }
-        usleep(600000);
+        //usleep(1000000/250);
     }
     file.close();
 }
