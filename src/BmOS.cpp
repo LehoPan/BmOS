@@ -14,6 +14,11 @@ void BmOS::changeFrame(int x, int y, int color) {
     frame[x][y] = color;
 }
 
+// changes animation file
+void BmOS::changeFile(string newFile) {
+    set = newFile;
+}
+
 void BmOS::render() {
     ofstream console1("/dev/tty1");
     ofstream console2("/dev/tty2");
@@ -75,7 +80,7 @@ void BmOS::play(bool loop) {
             changeFrame(clearing_array[0][0], clearing_array[0][1], bg_color);
             clearing_array.erase(clearing_array.begin());
         }
-        //usleep(1000000/250);
+        usleep(600000);
     }
     file.close();
 }

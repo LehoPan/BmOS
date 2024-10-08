@@ -28,8 +28,8 @@ class BmOS {
 	//filebuf *console2 = new filebuf();
 	//console2->open("/dev/tty2");
 		
-        int bg_color = 6;
-        string set = "loading";
+    int bg_color = 6;
+    string set = "loading";
 
     public:
         // construcor defines frame size
@@ -37,6 +37,9 @@ class BmOS {
 
         // change the frame
         void changeFrame(int x, int y, int color);
+
+        // change animtation file
+        void changeFile(string newFile);
 
         // render the frame onto console
         void render();
